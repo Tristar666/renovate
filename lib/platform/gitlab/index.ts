@@ -440,16 +440,13 @@ async function tryPrAutomerge(
           let {body} = await gitlabApi.getJson<Mr>(`projects/${config.repository}/merge_requests/${pr}`);
           // Only continue if the merge request can be merged and has a pipeline.
           if (body.merge_status === hasConflicts || body.merge_status === cantMerged) {
+            logger.debug(`There is conflicts or can't be merged`)
             return;
           }
           if (body.pipeline !== null) {
-            if (body.pipeline.status !== 'success') {
-              return;
-            }
             if (body.merge_status === desiredStatus) {
+              logger.debug(`MR is ready to merge`)
               break;
-            } else {
-              return;
             }
           }
         } catch(err) {
@@ -463,7 +460,7 @@ async function tryPrAutomerge(
 
       for (let attempt = 1; attempt <= maxAttempts; attempt += 1) {
         try {
-
+          logger.debug(`Try to merge. Attempt ${attempt}`)
           await gitlabApi.putJson(
             `projects/${config.repository}/merge_requests/${pr}/merge`,
             {
