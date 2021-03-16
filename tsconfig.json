@@ -1,0 +1,29 @@
+{
+  "compilerOptions": {
+    "strict": true,
+    "noImplicitAny": false /* required for js files */,
+    "strictNullChecks": false /* required for js files */,
+    "outDir": "./dist",
+    "target": "es2018",
+    "module": "commonjs",
+    "sourceMap": true,
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": false,
+    "noUnusedLocals": true,
+    "lib": ["es2018"],
+    "types": ["node", "jest"],
+    "allowJs": true,
+    "checkJs": true
+  },
+  "exclude": [
+    "node_modules",
+    "./.cache",
+    "./dist",
+    "**/__mocks__/*",
+    "bin",
+    "coverage",
+    "config.js",
+    "tmp"
+  ]
+}
