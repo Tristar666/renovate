@@ -473,6 +473,7 @@ async function tryPrAutomerge(
               },
             }
           );
+          return;
         } catch (err) /* istanbul ignore next */ {
           logger.debug({err}, 'Automerge on PR creation failed');
         }
